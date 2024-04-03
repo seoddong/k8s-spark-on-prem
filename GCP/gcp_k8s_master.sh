@@ -3,7 +3,8 @@
 # 클러스터 생성
 echo '======== [8] kubeadm으로 클러스터 생성 ========'
 echo '======== [8-1] 클러스터 초기화 (Pod Network 세팅) ========'
-kubeadm init --pod-network-cidr=20.96.0.0/12 --apiserver-advertise-address 10.182.0.2
+# kubeadm init --pod-network-cidr=20.96.0.0/12 --apiserver-advertise-address 10.182.0.2
+kubeadm init --pod-network-cidr=20.96.0.0/12 --apiserver-advertise-address GCP내부망주소 --apiserver-cert-extra-sans=GCP외부망주소
 kubeadm token create --print-join-command > ~/join.sh
 
 # kubectl 사용 설정
