@@ -9,7 +9,7 @@ echo '======== [4-4] [WARNING FileExisting-tc]: tc not found in system path 로�
 yum install -y yum-utils iproute-tc
 
 # kube에서 사용하는 port에 대한 방화벽 설정
-echo '======== [4-4] [WARNING FileExisting-tc]: tc not found in system path 로그 관련 업데이트 ========'
+echo '======== [4-5] kube용 방화벽 허용 설정(6443,10250) ========'
 sudo firewall-cmd --zone=public --add-port=6443/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=10250/tcp --permanent
 sudo firewall-cmd --reload
