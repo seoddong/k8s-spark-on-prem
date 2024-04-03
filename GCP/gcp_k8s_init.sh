@@ -8,6 +8,12 @@ timedatectl set-timezone Asia/Seoul
 echo '======== [4-4] [WARNING FileExisting-tc]: tc not found in system path 로그 관련 업데이트 ========'
 yum install -y yum-utils iproute-tc
 
+# kube에서 사용하는 port에 대한 방화벽 설정
+echo '======== [4-4] [WARNING FileExisting-tc]: tc not found in system path 로그 관련 업데이트 ========'
+sudo firewall-cmd --zone=public --add-port=6443/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=10250/tcp --permanent
+sudo firewall-cmd --reload
+
 # Swap 비활성화
 echo '======== [5] Swap 비활성화 ========'
 swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
