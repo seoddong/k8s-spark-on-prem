@@ -82,10 +82,11 @@ cat << EOF >> /etc/hosts
 EOF
 
 echo '======== [5] kubeadm 설치 전 사전작업 ========'
-echo '======== [5] 방화벽 해제 ========'
+echo '======== [5-1] 방화벽 해제 ========'
 systemctl stop firewalld && systemctl disable firewalld
 
-echo '======== [5] Swap 비활성화 ========'
+echo '======== [5-2] Swap 비활성화 ========'
+echo '======== [5-2] kubelet 컴포넌트가 제대로 동작하기 위해 ========'
 swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
 
 
