@@ -16,6 +16,7 @@ sudo firewall-cmd --reload
 
 # Swap 비활성화
 echo '======== [5] Swap 비활성화 ========'
+echo '======== [5] kubelet 컴포넌트가 제대로 동작하기 위해 ========'
 swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
 
 # 컨테이너 런타임 설치 전 사전작업
