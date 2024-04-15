@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message Book {
+    string title = 1;
+    string author = 2;
+    string publisher = 3;
+    string isbn = 4;
+    int32 price = 5;
+    string publication_Date = 6;
+    string source = 7;
+}
