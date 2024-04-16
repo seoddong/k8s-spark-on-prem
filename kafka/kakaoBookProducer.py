@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     #kafka configs
     conf = {
-        'bootstrap.servers': 'peter-kafka01.foo.bar:9092',
+        'bootstrap.servers': 'peter-kafka01.foo.bar:9092,peter-kafka02.foo.bar:9092,peter-kafka03.foo.bar:9092',
         # 'bootstrap.servers': 'localhost:29092',
     }
 
