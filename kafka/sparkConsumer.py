@@ -24,7 +24,7 @@ if __name__ == '__main__':
     df = ss.readStream.format("kafka")\
         .option("startingOffset", "earliest")\
         .option("subscribe", "book")\
-        .option("kafka.bootstrap.servers", "peter-kafka01.foo.bar:9092")\
+        .option("kafka.bootstrap.servers", "peter-kafka01.foo.bar:9092,peter-kafka02.foo.bar:9092,peter-kafka03.foo.bar:9092")\
         .load()
     
     df.writeStream.format("console")\
