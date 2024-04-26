@@ -90,8 +90,5 @@ systemctl enable --now kubelet
 echo '======== [for Longhorn] Installing iscsi-initiator-utils ========'
 sudo yum install -y iscsi-initiator-utils
 echo "Enabling and starting iscsid service..."
-sudo systemctl enable --now iscsi
-sudo systemctl enable --now iscsid
-
-
-
+sudo systemctl enable iscsid
+sudo systemctl start iscsid
