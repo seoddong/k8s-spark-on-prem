@@ -83,4 +83,12 @@ echo '======== [7] kubelet, kubeadm, kubectl 패키지 설치 ========'
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 systemctl enable --now kubelet
 
+# open iscsi 설치 for Longhorn
+echo '======== [for Longhorn] Installing iscsi-initiator-utils ========'
+sudo yum install -y iscsi-initiator-utils
+echo "Enabling and starting iscsid service..."
+sudo systemctl enable --now iscsi
+sudo systemctl enable --now iscsid
+
+
 
