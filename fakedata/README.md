@@ -1,5 +1,7 @@
 # fakedata_ver01.py 사용법
-- 실행시키면 하위에 synthetic_sales_data 폴더를 만들고 그 아래 합성데이터 파일이 sales_data_2024-05-20_1.csv 형태로 만들어 짐 
+- fakedata_ver01.py와 requirements.txt 파일 다운로드
+- pip install -r requirements.txt 명령으로 필요한 라이브러리 설치
+- fakedata_ver01.py 실행시키면 하위에 synthetic_sales_data 폴더를 만들고 그 아래 합성데이터 파일이 sales_data_2024-05-20_1.csv 형태로 만들어 짐 
 - 현재 생성하는 합성 데이터 설정하기
    - 파일당 100건의 데이터가 생성되고 10개의 파일을 만듦 = 즉 1,000개의 데이터 생성
       ```python
