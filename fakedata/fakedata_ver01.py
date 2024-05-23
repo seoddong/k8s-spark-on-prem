@@ -5,6 +5,7 @@ import random
 import os
 import re
 from datetime import datetime, timedelta
+import time
 
 # DB 접속 정보
 db_info = {
@@ -70,10 +71,14 @@ if not os.path.exists(output_dir):
 multiplier = 10  # 데이터 배수
 records_per_file = 100  # 파일당 저장 건수
 
-# 작업 날짜 범위 설정 (오늘부터 15일 역순)
-end_date = datetime.today()
-start_date = end_date - timedelta(days=14)
-unique_dates = [end_date - timedelta(days=x) for x in range(15)]
+# 작업 날짜 범위 설정 (start_date부터 n일 순차적으로)
+# start_date = datetime.strptime("2024-05-15", '%Y-%m-%d')  # 시작 날짜 설정
+# delta_days = 6  # 10일치 생성하려면 9로 입력
+# unique_dates = [start_date + timedelta(days=x) for x in range(delta_days + 1)]
+# 오늘 날짜의 데이터만 생성하려면 아래와 같이 설정
+start_date = datetime.today()
+delta_days = 0
+unique_dates = [start_date]
 
 channel_cd_options = ['F01', 'F02', 'F03']
 
@@ -156,5 +161,7 @@ for date in unique_dates:
             print(f"{date.strftime('%Y-%m-%d')} 데이터 저장 완료: {output_path}")
         else:
             print(f"{date.strftime('%Y-%m-%d')} 데이터 저장 실패: {output_path}")
+        
+        time.sleep(1)  # 각 파일 저장 후 1초 대기
 
 print("모든 합성 데이터가 날짜별로 저장됨")
