@@ -56,7 +56,6 @@ def process_batch(last_batch_time, initial_run=False):
     write_data_to_db(df_re_sales, mariadb_url, db_properties, logger)
 
     save_last_read_times(last_read_times_file, last_read_times)
-    logger.info(f"last_read_times.json 갱신 완료: {last_read_times}")
 
     logger.info("스파크 세션 유지")
     
@@ -93,7 +92,7 @@ def main():
             initial_run = False
             remaining_time = BATCH_INTERVAL
             while remaining_time > 0:
-                if remaining_time > 10:
+                if remaining_time > 5:
                     logger.info(f"배치 대기 중: {remaining_time}초 남음")
                     time.sleep(5)
                     remaining_time -= 5
