@@ -57,3 +57,12 @@ def create_spark_session(aws_access_key_id, aws_secret_access_key, logger):
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
     logger.info("Spark 세션 생성 완료")
     return spark
+
+# 추가된 설정 상수
+mariadb_url = "jdbc:mysql://34.68.13.64:30007/sparkdb?permitMysqlScheme"
+db_properties = {
+    "driver": "org.mariadb.jdbc.Driver",
+    "user": "root",
+    "password": "tjehdgml"
+}
+s3_url = "s3a://jolajoayo-spark-0001/sales_"

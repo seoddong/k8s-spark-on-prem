@@ -42,5 +42,5 @@ def process_data(df_sales, df_product, df_employees, df_code, df_iso, logger):
     return df_re_sales
 
 def write_data_to_db(df_re_sales, mariadb_url, db_properties, logger):
-    df_re_sales.write.jdbc(url=mariadb_url, table="TB_RE_SALES1", mode="append", properties=db_properties)
+    df_re_sales.write.jdbc(url=mariadb_url, table="TB_RE_SALES", mode="append", properties=db_properties)
     logger.info("결과를 MariaDB에 저장 완료")

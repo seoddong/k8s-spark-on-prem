@@ -1,12 +1,13 @@
 import os
 import json
 from pyspark.sql.functions import max as max_col, col
-from datetime import datetime
+from datetime import datetime, date
 import boto3
 import re
+import ENMVP_setting as settings
 
-def get_last_processed_date(spark, mariadb_url, db_properties, logger):
-    df_last_date = spark.read.jdbc(mariadb_url, "TB_RE_SALES1", properties=db_properties).select(max_col("Sale_Date").alias("last_date"))
+def get_last_processed_date(spark, logger):
+    df_last_date = spark.read.jdbc(settings.mariadb_url, "TB_RE_SALES1", properties=settings.db_properties).select(max_col("Sale_Date").alias("last_date"))
     if df_last_date.head(1):
         logger.info(f"df_last_date.head(1): {df_last_date.head(1)}")
         last_date = df_last_date.collect()[0]["last_date"]
@@ -29,21 +30,23 @@ def load_last_read_times(file_path):
 
 def save_last_read_times(file_path, data):
     with open(file_path, 'w') as file:
-        json.dump(data, file)
+        json.dump(data, file, indent=4)  # 가독성 좋게 저장
 
-def read_data_from_s3(spark, s3_url, last_date, logger, initial_run=False):
+def read_data_from_s3(spark, last_date, logger, last_read_times, initial_run=False):
     s3 = boto3.client('s3')
-    bucket = s3_url.split('/')[2]
-    prefix = '/'.join(s3_url.split('/')[3:])
-
-    last_read_times_file = 'last_read_times.json'
-    last_read_times = load_last_read_times(last_read_times_file)
+    bucket = settings.s3_url.split('/')[2]
+    prefix = '/'.join(settings.s3_url.split('/')[3:])
 
     response = s3.list_objects_v2(Bucket=bucket, Prefix=prefix)
     new_files = []
 
     # last_date를 datetime 객체로 변환
-    last_date_dt = datetime.strptime(last_date, "%Y-%m-%d %H%M%S")
+    if isinstance(last_date, str):
+        last_date_dt = datetime.strptime(last_date, "%Y-%m-%d %H%M%S")
+    elif isinstance(last_date, date):
+        last_date_dt = datetime.combine(last_date, datetime.min.time())
+    else:
+        last_date_dt = last_date
 
     logger.info(f"S3 버킷에서 객체 목록 가져오기 완료: {bucket}/{prefix}")
     logger.info(f"last_date_dt: {last_date_dt.strftime('%Y-%m-%d %H%M%S')}")
@@ -54,6 +57,7 @@ def read_data_from_s3(spark, s3_url, last_date, logger, initial_run=False):
             file_key = obj['Key']
             logger.info(f"파일 추가 (초기 실행): {file_key}")
             new_files.append(f"s3a://{bucket}/{file_key}")
+            last_read_times[file_key] = obj['LastModified'].isoformat()  # 초기 실행 시 last_read_times 갱신
     else:
         for obj in response.get('Contents', []):
             file_key = obj['Key']
@@ -81,22 +85,22 @@ def read_data_from_s3(spark, s3_url, last_date, logger, initial_run=False):
 
     if not new_files and initial_run:
         logger.info("초기 실행 - 모든 파일 읽기 시도")
-        df_sales = spark.read.parquet(f"s3a://{bucket}/{prefix}").filter(col("Sale_Date") > last_date)
+        df_sales = spark.read.parquet(f"s3a://{bucket}/{prefix}")
     elif not new_files:
         logger.info("새로운 파일이 없으므로 빈 DataFrame 반환")
-        return spark.createDataFrame([], spark.read.parquet(s3_url).schema)
+        sample_schema = spark.read.parquet(f"s3a://{bucket}/{prefix}*").schema
+        return spark.createDataFrame([], sample_schema), last_read_times
     else:
-        df_sales = spark.read.parquet(*new_files).filter(col("Sale_Date") > last_date)
+        df_sales = spark.read.parquet(*new_files)
     
     logger.info("S3에서 새로운 데이터 읽기 완료")
     
-    save_last_read_times(last_read_times_file, last_read_times)
-    return df_sales
+    return df_sales, last_read_times
 
-def read_reference_data(spark, mariadb_url, db_properties, logger):
-    df_product = spark.read.jdbc(mariadb_url, "TB_PRODUCT", properties=db_properties)
-    df_employees = spark.read.jdbc(mariadb_url, "TB_EMPLOYEES", properties=db_properties)
-    df_code = spark.read.jdbc(mariadb_url, "TB_CODE", properties=db_properties)
-    df_iso = spark.read.jdbc(mariadb_url, "TB_ISO", properties=db_properties)
+def read_reference_data(spark, logger):
+    df_product = spark.read.jdbc(settings.mariadb_url, "TB_PRODUCT", properties=settings.db_properties)
+    df_employees = spark.read.jdbc(settings.mariadb_url, "TB_EMPLOYEES", properties=settings.db_properties)
+    df_code = spark.read.jdbc(settings.mariadb_url, "TB_CODE", properties=settings.db_properties)
+    df_iso = spark.read.jdbc(settings.mariadb_url, "TB_ISO", properties=settings.db_properties)
     logger.info("MariaDB에서 참조 데이터 읽기 완료")
     return df_product, df_employees, df_code, df_iso
