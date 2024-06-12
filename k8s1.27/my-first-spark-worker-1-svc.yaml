@@ -1,66 +1,23 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: my-first-spark-worker-1-svc
+  name: <svc이름> my-first-spark-worker-1-svc
   namespace: default
-  uid: ebcefd07-074a-4451-946a-afe719a40c53
-  resourceVersion: '6754337'
-  creationTimestamp: '2024-06-12T06:37:26Z'
   labels:
     app.kubernetes.io/component: worker
     app.kubernetes.io/instance: my-first-spark
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: spark
-  managedFields:
-    - manager: dashboard
-      operation: Update
-      apiVersion: v1
-      time: '2024-06-12T06:38:32Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:metadata:
-          f:labels:
-            .: {}
-            f:app.kubernetes.io/component: {}
-            f:app.kubernetes.io/instance: {}
-            f:app.kubernetes.io/managed-by: {}
-            f:app.kubernetes.io/name: {}
-        f:spec:
-          f:externalTrafficPolicy: {}
-          f:internalTrafficPolicy: {}
-          f:ports:
-            .: {}
-            k:{"port":80,"protocol":"TCP"}:
-              .: {}
-              f:name: {}
-              f:nodePort: {}
-              f:port: {}
-              f:protocol: {}
-              f:targetPort: {}
-          f:selector: {}
-          f:sessionAffinity: {}
-          f:type: {}
 spec:
   ports:
     - name: http
       protocol: TCP
       port: 80
       targetPort: 8080
-      nodePort: 30080
+      nodePort: <port번호> 30079
   selector:
     app.kubernetes.io/component: worker
     app.kubernetes.io/instance: my-first-spark
     app.kubernetes.io/name: spark
-    statefulset.kubernetes.io/pod-name: my-first-spark-worker-1
-  clusterIP: 10.96.144.240
-  clusterIPs:
-    - 10.96.144.240
+    statefulset.kubernetes.io/pod-name: <pod이름> my-first-spark-worker-1
   type: NodePort
-  sessionAffinity: None
-  externalTrafficPolicy: Cluster
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
-  internalTrafficPolicy: Cluster
-status:
-  loadBalancer: {}
