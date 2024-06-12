@@ -17,6 +17,7 @@ GCP 기준으로 테스트 함.
 2. 각각의 spark executor Web UI 접속을 위해 executor용 Nodeport Service를 만든다.
    - 아래 링크 파일을 기반으로 my-first-spark-worker-1-svc, my-first-spark-worker-2-svc, my-first-spark-worker-3-svc을 만든다.
    - https://github.com/seoddong/k8s-on-prem/blob/4d75c2425c700f106528843477b707704bdf63a7/k8s1.27/my-first-spark-worker-1-svc.yaml
-   - <svc이름> my-first-spark-worker-1-svc
-   - <port번호> 30079
-   - <pod이름> my-first-spark-worker-1
+   - <svc이름> my-first-spark-worker-1-svc, my-first-spark-worker-2-svc, my-first-spark-worker-3-svc
+   - <port번호> 30079, 30080, 30081
+   - <pod이름> my-first-spark-worker-1, my-first-spark-worker-2, my-first-spark-worker-3
+3. https://[k8s-master IP]:30079, https://[k8s-master IP]:30080, https://[k8s-master IP]:30081 접속하여 확인한다.
