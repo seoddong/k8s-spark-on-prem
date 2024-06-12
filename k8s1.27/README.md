@@ -20,4 +20,4 @@ GCP 기준으로 테스트 함.
    - <svc이름> my-first-spark-worker-1-svc, my-first-spark-worker-2-svc, my-first-spark-worker-3-svc
    - <port번호> 30079, 30080, 30081
    - <pod이름> my-first-spark-worker-1, my-first-spark-worker-2, my-first-spark-worker-3
-3. https://[k8s-master IP]:30079, https://[k8s-master IP]:30080, https://[k8s-master IP]:30081 접속하여 확인한다.
+3. http://[k8s-master IP]:30079, http://[k8s-master IP]:30080, http://[k8s-master IP]:30081 접속하여 확인한다.
