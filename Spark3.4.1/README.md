@@ -10,10 +10,12 @@ Spark Application을 만들고 실행시키면 executor가 실행되는데 각 e
 
 그러나 해당 링크는 k8s 파드의 내부 IP이기 때문에 외부에서 접속되지 않아 k8s-nodeport 설정이 필요하다.
 - 이에 대한 설정은 (https://github.com/seoddong/k8s-on-prem/blob/e9d45bf0ed097dd529280897ce43691e50b3c731/k8s1.27/README.md)을 참고하자.
+
 설정을 완료했다면 http://[k8s-master IP]:30079, http://[k8s-master IP]:30080, http://[k8s-master IP]:30081 에 접속하여 확인 가능하다.
 
 # Spark Application Detail UI 확인하기
 Spark Application을 만들어 실행시키고 running 중인 application에 들어가보면 Application Detail UI 링크가 활성화 된 것을 볼 수 있다.
 - http://jupyter-notebook.us-central1-a.c.oceanic-hold-423500-q3.internal:4041/
+
 그러나 위와 같이 링크가 spark driver 위치의 호스트 주소 형태로 반환되는데 외부망에서 접속이 안 된다.
 이는 GCP에서 방화벽 4041포트를 열고 외부 IP를 이용하여 접속하면 정상적으로 열리는 것을 확인할 수 있다. 
