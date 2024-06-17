@@ -68,7 +68,9 @@
    - 고정IP 적용(수정 > 네트워크 인터페이스 > 외부IPv4 주소 > 고정 외부IP 주소 예약: k8s-master-ip)
    - [gcp_k8s_master.sh](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/gcp_k8s_master.sh) 파일을 열고 안의 스크립트를 모두 복사한다.
    - VSCode에서 파일 > 새 텍스트 파일 메뉴 클릭해서 새 창을 열고 스크립트를 붙여넣는다.
-   - 파일 > 저장 (or Ctrl+S)을 누르고 /root/k8s/gcp_k8s_master.sh 이름으로 저장한다.(새 폴더를 만들면서 저장할 것인지 물어보면 순순히 응할 것)
+     ### <span style="color: orange;">!!!중요!!!</sapn> 스크립트에서 <span style="color: orange;">GCP내부망주소</sapn>와 <span style="color: orange;">GCP외부망주소</sapn> 부분을 자신의 서버 정보에 맞게 수정한다.
+     ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/3c27b29f-d853-4ad0-9da7-855a1c1eaa5a)
+   - 파일 > 저장 (or Ctrl+S)을 누르고 /root/k8s/gcp_k8s_master.sh 이름으로 저장한다.(새 폴더를 만들면서 저장할 것인지 물어보면 순순히 응할 것)
    - 터미널 창에서 저장한 파일을 실행한다.
       방금 저장한 파일은 실행 권한이 없으므로 실행 권한을 부여한다.
      ```shell
