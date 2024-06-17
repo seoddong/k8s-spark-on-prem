@@ -50,7 +50,7 @@
      ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/0d7607bf-1c12-4d3d-a8ea-30066624351a)
 
 4. k8s-master 서버에 k8s-master용 환경 세팅하기
-   - gcp_k8s_init.sh 파일을 열고 안의 스크립트를 모두 복사한다.
+   - [gcp_k8s_init.sh](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/gcp_k8s_init.sh) 파일을 열고 안의 스크립트를 모두 복사한다.
    - VSCode에서 파일 > 새 텍스트 파일 메뉴 클릭해서 새 창을 열고 스크립트를 붙여넣는다.
    - 파일 > 저장 (or Ctrl+S)을 누르고 /root/k8s/gcp_k8s_init.sh 이름으로 저장한다.(새 폴더를 만들면서 저장할 것인지 물어보면 순순히 응할 것)
    - 터미널 창에서 저장한 파일을 실행한다.(방금 저장한 파일은 실행 권한이 없으므로 실행 권한을 부여한다)
@@ -63,6 +63,35 @@
    ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/0d5b2252-1728-46cc-b019-8995f3ae4fd4)
    - 이름: img-k8s-base-v1
    - 만들기 클릭
+  
+6. k8s-master 서버 세팅 마무리
+   - 고정IP 적용(수정 > 네트워크 인터페이스 > 외부IPv4 주소 > 고정 외부IP 주소 예약: k8s-master-ip)
+   - [gcp_k8s_master.sh](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/gcp_k8s_master.sh) 파일을 열고 안의 스크립트를 모두 복사한다.
+   - VSCode에서 파일 > 새 텍스트 파일 메뉴 클릭해서 새 창을 열고 스크립트를 붙여넣는다.
+   - 파일 > 저장 (or Ctrl+S)을 누르고 /root/k8s/gcp_k8s_master.sh 이름으로 저장한다.(새 폴더를 만들면서 저장할 것인지 물어보면 순순히 응할 것)
+   - 터미널 창에서 저장한 파일을 실행한다.
+      방금 저장한 파일은 실행 권한이 없으므로 실행 권한을 부여한다.
+     ```shell
+      $chmod +x ./k8s/gcp_k8s_master.sh
+      $./k8s/gcp_k8s_master.sh
+     ```
+
+
+# k8s worker node 세팅(3대 기준)
+6. k8s worker node 세팅(3대 기준)
+   - GCP 머신이미지의 인스턴스 만들기를 이용하여 VM 생성
+     ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/c25aa7d2-efbe-45e5-997b-48e7812fb671)
+   - 이름: k8s-node1, k8s-node2, k8s-node3
+   - 방화벽: HTTP 체크, HTTPS 체크
+   - 만들기 클릭
+
+7. VSCode의 SSH 구성 파일에 아래 그림처럼 서버 정보를 추가하고 접속
+   ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/a38c836a-8270-4395-b743-5a8b61e2697b)
+
+8. 
+
+
+
 
 # Spark WEB UI를 위한 Nodeport 설정
 1. 기본 Spark Web UI 접속 위한 설정은 helm 설치 과정에서 설정함
