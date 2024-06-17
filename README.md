@@ -1,4 +1,4 @@
-![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/ac6b49ef-1f71-4022-acda-5a16328ff588)![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/10df704d-48b9-45f8-bb79-4991b28f0040)![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/f648a7bd-223d-48da-9e30-ee693a3adce8)![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/f463e82e-ecb9-4e2f-8168-ea15916aff85)# k8s-spark에 대하여
+# k8s-spark에 대하여
 k8s 1.27 버전에 spark 3.4.1 버전으로 클러스터링 구성하며 전체적인 아키텍처는 아래 그림 참조
 ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/9f49cf1d-5cb4-4aae-9ffb-6f02610ede99)
 
