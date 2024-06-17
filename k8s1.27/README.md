@@ -1,4 +1,4 @@
-# k8s 구성을 위한 GCP VM 세팅
+# k8s 구성을 위한 GCP K8S-master VM 세팅
 본 과제는 TCP 무료 계정(3개월/40만원 혜택)을 사용하여 진행함.
 1. 기본 이미지용 VM 생성
    - 이름: k8s-master
@@ -79,18 +79,33 @@
      ```
 
 
-# k8s worker node 세팅(3대 기준)
-6. k8s worker node 세팅(3대 기준)
+# K8S worker node 세팅
+1. k8s worker node 세팅(3대 기준)
    - GCP 머신이미지의 인스턴스 만들기를 이용하여 VM 생성
      ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/c25aa7d2-efbe-45e5-997b-48e7812fb671)
    - 이름: k8s-node1, k8s-node2, k8s-node3
    - 방화벽: HTTP 체크, HTTPS 체크
    - 만들기 클릭
 
-7. VSCode의 SSH 구성 파일에 아래 그림처럼 서버 정보를 추가하고 접속
+2. VSCode의 SSH 구성 파일에 아래 그림처럼 서버 정보를 추가하고 새로 만든 VM에 접속
    ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/a38c836a-8270-4395-b743-5a8b61e2697b)
 
-8. 
+3. K8S worker node들을 k8s-master와 연결(클러스터링)
+   - k8s-master 서버에 접속하여 연결 명령어 출력
+     ```shell
+     $cat ./join.sh
+     kubeadm join 192.168.56.30:6443 --token 7uruf6.n2w97dphqikk5m8f --discovery-token-ca-cert-hash sha256:b889a7b0767bde6e8d1dca4b326ef31669a7c6a4495ac18c7884d0dc41649e8f
+     ```
+   - 위 출력된 문자열을 카피하여 worker node 1,2,3에 접속하여 터미널에 붙여넣고 실행시킨다.
+   - 간혹 연결이 안 되는 경우가 있는데 이 때는 토큰을 새로 생성하여 출력된 문자열로 작업하면 된다.
+     ```shell
+     $kubeadm token create --print-join-command
+     ```
+   - k8s-master에서 worker node들이 잘 연결되어 있는지 확인한다.
+     ```shell
+     kubectl get nodes
+     ```
+     추가한 worker node들이 보인다면 잘 연결된 것이다.
 
 
 
