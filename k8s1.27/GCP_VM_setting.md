@@ -132,3 +132,9 @@
      - 30078 spark Web UI 접속용 nodeport
      - 30079-30081 spark executor WEb UI 접속용 nodeport
 
+# k8s 대시보드 확인
+   1) https://<<k8s-master 외부IP>>:30000
+   2) 위 URL에 접속 후 고급 > "안전하지 않음" 클릭
+   3) 만약 로그인/토큰 팝업 창이 뜬다면 "생략" 버튼 클릭
+   ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/9751d15d-d49d-45af-abfd-95cc9834beaf)
+
