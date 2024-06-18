@@ -47,3 +47,11 @@ Helm-client가 설치된 서버에 주피터 노트북 환경도 같이 설정�
 이에 대해 아래 링크를 참조하여 각 화면을 볼 수 있다.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md)
 
+<br>
+
+# spark 미니 프로젝트
+AWS S3에서 spark stream을 이용하여 파일을 읽고 MariaDB에 저장하는 미니 프로젝트를 진행해본다.<br>
+미니 프로젝트를 위해 k8s에 MariaDB를 추가해야 하고 MariaDB가 사용할 스토리지로 Longhorn을 미리 설치해야 한다.
+MariaDB와 Longhorn의 설치는 아래 링크를 확인하.
+- [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md)
+
