@@ -1,5 +1,5 @@
 # Helm용 VM 구성
-  - 앞서 만든 베이스 머신 이미지 이용해서 새로운 VM을 하나 만든다. [참조](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/GCP_VM_setting.md#k8s-worker-node-%EC%84%B8%ED%8C%85)
+  - 앞서 만든 베이스 머신 이미지 이용해서 새로운 VM을 하나 만든다. [참조](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/GCP_VM_setting.md#k8s-worker-node-세팅)
   - VSCode 접속 환경도 구성한다.
 
 # Helm 설치
