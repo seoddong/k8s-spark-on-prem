@@ -55,16 +55,26 @@ kubectl version --client
 
 <br>
 
-# Helm 이용하여 k8s에 spark 클러스터 설
-  K8s-spark repo를 추가하는 방법<br>
-  repo를 추가하더라도 메타정보만 가져오게 되는데 해당 소스까지 몽땅 가져오고 싶다면 pull로 소스 동기화 가능하다.<br>
-  여기서는 pull까지 할 필요는 없다.
-   ```
-    [root@helm-client ~]# helm repo add bitnami https://charts.bitnami.com/bitnami
-    [root@helm-client ~]# helm repo update
-    pull은 필요한 경우에만 한다.
-    [root@helm-client ~]# helm pull bitnami/spark --version 5.1.2
-   ```
+# Helm 이용하여 spark 설치
+처음엔 최신 버전인 Spark 3.5.0을 설치하여 사용하려 하였으나 다른 라이브러리의 궁합 정보를 찾는 과정에서 가장 정보가 많은 3.4.1버전으로 설치하기로 하였다.<br>
+본 과제에서는 Bitnami/Spark를 설치한다. Spark 3.4.1로 설치하려면 Bitnami Spark 버전을 7.2.2로, spark 3.5로 설치하려면 9.0.0 입력한다.<br>
+replicaCount는 kube worker node 숫자 이하로 세팅
+
+```shell
+helm install my-first-spark bitnami/spark --version 7.2.2 -n default \
+  --set service.type=NodePort \
+  --set service.nodePorts.cluster=30077 \
+  --set service.nodePorts.http=30078 \
+  --set worker.replicaCount=3
+```
+
+<br>
+
+# spark를 삭제하거나 재설치하고자 하는 경우
+  - 삭제하기
+    ```shell
+    [root@helm-client ~]# helm uninstall my-first-spark
+    ```
 
 <br>
 
