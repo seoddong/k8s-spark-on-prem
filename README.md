@@ -1,6 +1,8 @@
 # 목차
 - [k8s-spark에 대하여](#k8s-spark에-대하여)
 - [k8s 구성을 위한 GCP VM 세팅](#k8s-구성을-위한-gcp-vm-세팅)
+- [k8s 어플리케이션 설치 위한 Helm-client 환경 세팅](#k8s-어플리케이션-설치-위한-Helm-client-환경-세팅)
+- [spark 어플리케이션 개발 위한 Jupyter Notebook 환경 세팅](#spark-어플리케이션-개발-위한-Jupyter-Notebook-환경-세팅)
 
 <br><br><br><br>
 
@@ -27,4 +29,6 @@ Helm을 이용하여 Spark 클러스터를 설치하는 방법도 아래 링크�
 
 # spark 어플리케이션 개발 위한 Jupyter Notebook 환경 세팅
 Helm-client가 설치된 서버에 주피터 노트북 환경도 같이 설정한다.<br>
+구축 상세는 아래 링크 참조.
+- [https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md)
 
