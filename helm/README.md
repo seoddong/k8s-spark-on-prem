@@ -111,3 +111,9 @@ Spark 설치 결과는 아래 링크 통해 Web UI로 확인 가능하다.
       기본 values.yaml 보기
       [root@helm-client ~]# helm show values bitnami/spark
      ```
+
+<br>
+
+# 다양한 스파크 설치 관련 옵션
+더 다양한 옵션들은 아래 사이트에서 확인 가능하다.
+- [https://artifacthub.io/packages/helm/bitnami/spark](https://artifacthub.io/packages/helm/bitnami/spark)
