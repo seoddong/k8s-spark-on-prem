@@ -108,14 +108,27 @@
      추가한 worker node들이 보인다면 잘 연결된 것이다.
 
 
+# 외부에서 k8s에 접근하기 위한 GCP 방화벽 설정
+   ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/28a3279d-fa43-4b67-9e43-9fe36a8ba48a)
+   - GCP 메뉴: VPC 네트워크 > 방화벽
+   - 방화벽 규칙 만들기 선택
+   - 이름: k8s-spark
+   - 대상: 네트워크의 모든 인스턴스
+   - 소스 IPv4 범위: 0.0.0.0/0
+   - TCP 체크, 포트: 6443
+   - 만들기 선택
+   - 어차피 나중에 아 포트들 추가해야 하므로 여기서 미리 추가해놓는 것도 좋다.<br>
+     3306,4040,4041,5001-5003,6443,8080,8888,30000,30007,30077,30078,30079-30081,30705
+   - 포트 설명
+     - 3306 MariaDB (외부에서는 이 포트로 접속 불가)
+     - 4040, 4041 Spark Jobs UI
+     - 5001-5003 왜 열었는지 생각 안 남
+     - 6443 k8s 통신
+     - 8080 python tailon 서비스(서버 로그 파일의 tail 결과를 실시간 웹으로 서비스)
+     - 8888 spark때문에 열었던거 까지는 기억 남
+     - 30000 k8s 대시보드
+     - 30007 mariaDB의 nodeport (외부에서 접속할 때 사용)
+     - 30077 spark간 통신용 nodeport
+     - 30078 spark Web UI 접속용 nodeport
+     - 30079-30081 spark executor WEb UI 접속용 nodeport
 
-
-# Spark WEB UI를 위한 Nodeport 설정
-1. 기본 Spark Web UI 접속 위한 설정은 helm 설치 과정에서 설정함
-2. 각각의 spark executor Web UI 접속을 위해 executor용 Nodeport Service를 만든다.
-   - 아래 링크 파일을 기반으로 my-first-spark-worker-1-svc, my-first-spark-worker-2-svc, my-first-spark-worker-3-svc을 만든다.
-   - https://github.com/seoddong/k8s-on-prem/blob/4d75c2425c700f106528843477b707704bdf63a7/k8s1.27/my-first-spark-worker-1-svc.yaml
-   - <svc이름> my-first-spark-worker-1-svc, my-first-spark-worker-2-svc, my-first-spark-worker-3-svc
-   - <port번호> 30079, 30080, 30081
-   - <pod이름> my-first-spark-worker-1, my-first-spark-worker-2, my-first-spark-worker-3
-3. http://[k8s-master IP]:30079, http://[k8s-master IP]:30080, http://[k8s-master IP]:30081 접속하여 확인한다.
