@@ -1,9 +1,23 @@
+# Helm이란
+  ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/f76418b4-7e92-4749-ae6c-ee1896dbc180)
+
+<br>
+
+# Helm 아키텍처
+  ![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/2e7ed790-aa13-4a1f-a6e2-4ce2248a51c4)
+
+<br>
+
 # Helm용 VM 구성
   - 앞서 만든 베이스 머신 이미지 이용해서 새로운 VM을 하나 만든다. K8S worker node 세팅 부분 [참조](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/GCP_VM_setting.md#k8s-worker-node-%EC%84%B8%ED%8C%85)
   - VSCode 접속 환경도 구성한다.
 
+<br>
+
 # Helm 설치
 서버에 접속 후 [install.sh](https://github.com/seoddong/k8s-spark-on-prem/blob/main/helm/install.sh) 스크립트 실행 (VSCode로 새 파일 만들고 스크립트 복사해서 넣고 저장하고 권한 주고.. 이런 작업은 앞서 했으니 자세한 설명은 생략)
+
+<br>
 
 # kubectl 설치
 Helm이 k8s와 통신하기 위해 kubectl을 설치해야 한다. 아래 코드를 한 줄 씩 실행한다.
@@ -13,3 +27,64 @@ chmod 700 ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
+
+<br>
+
+# Helm과 kube 클러스터간 연결
+  k8s-master의 ~/.kube/config 파일을 helm-client의 동일한 경로에 카피하면 됨
+   ```
+    [root@helm-client ~]# mkdir .kube
+    [root@helm-client ~]# scp root@34.68.13.64:~/.kube/config .kube/config 
+    [root@helm-client ~]# ls .kube
+    혹시 VM재설치 등으로 호스트 키가 변경되어 로그인이 안 될 경우 아래 명령으로 호스트키 초기화하고 다시 시도한다.
+    [root@helm-client ~]# ssh-keygen -R <<호스트명 또는 IP 주소>>
+   ```
+
+<br>
+
+# Helm에 repo 추가
+  K8s-spark repo를 추가하는 방법<br>
+  repo를 추가하더라도 메타정보만 가져오게 되는데 해당 소스까지 몽땅 가져오고 싶다면 pull로 소스 동기화 가능하다.<br>
+  여기서는 pull까지 할 필요는 없다.
+   ```
+    [root@helm-client ~]# helm repo add bitnami https://charts.bitnami.com/bitnami
+    [root@helm-client ~]# helm repo update
+    pull은 필요한 경우에만 한다.
+    [root@helm-client ~]# helm pull bitnami/spark --version 5.1.2
+   ```
+
+<br>
+
+# Helm 이용하여 k8s에 spark 클러스터 설
+  K8s-spark repo를 추가하는 방법<br>
+  repo를 추가하더라도 메타정보만 가져오게 되는데 해당 소스까지 몽땅 가져오고 싶다면 pull로 소스 동기화 가능하다.<br>
+  여기서는 pull까지 할 필요는 없다.
+   ```
+    [root@helm-client ~]# helm repo add bitnami https://charts.bitnami.com/bitnami
+    [root@helm-client ~]# helm repo update
+    pull은 필요한 경우에만 한다.
+    [root@helm-client ~]# helm pull bitnami/spark --version 5.1.2
+   ```
+
+<br>
+
+# 간단한 Helm 명령어 예제
+  1) Helm 설치 확인
+     ```
+      Helm 버전 정보 확인해보기
+      [root@helm-client ~]# helm version
+     ```
+  
+  2) Helm repo 관리 명령어
+     ```
+      [root@helm-client ~]# helm repo list
+      [root@helm-client ~]# helm repo remove 리포이름
+     ```
+  
+  3) Helm repo 및 chart 조회
+     ```
+      [root@helm-client ~]# helm search repo bitnami
+      [root@helm-client ~]# helm search repo bitnami/spark --versions
+      기본 values.yaml 보기
+      [root@helm-client ~]# helm show values bitnami/spark
+     ```
