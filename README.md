@@ -16,3 +16,8 @@ k8s 1.27 버전에 spark 3.4.1 버전으로 클러스터링 구성하며 전체�
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/GCP_VM_setting.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/GCP_VM_setting.md)
 
 
+# k8s 어플리케이션 설치 위한 Helm-client 환경 세팅
+별도 서버에 Helm-client를 설치한다. 로컬에 설치해도 되지만 본 과제에서는 하나의 서버에 Helm과 주피터 노트북을 같이 사용할 수 있는 환경을 구성한다.<br>
+구축 상세는 아래 링크 참조.
+- [helm/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/helm/README.md)
+
