@@ -69,11 +69,5 @@
 <br>
 
 # jupyter home
-jupyter home 폴더는 jupyter notebook 서버가 실행되는 경로
+파이썬 소스 파일 관리 상 jupyter home 폴더 만들고 여기에 ipynb나 py파일을 위치시킨다.
 
-ex) root경로에서 jupyter notebook을 실행하였다면 jupyter home은 root가 됨 
-```shell
-rm -f nohup.out
-nohup jupyter notebook --ip='0.0.0.0' --port=8888 --no-browser --allow-root &
-cat nohup.out
-```
