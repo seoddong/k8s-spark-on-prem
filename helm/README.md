@@ -68,12 +68,25 @@ helm install my-first-spark bitnami/spark --version 7.2.2 -n default \
   --set worker.replicaCount=3
 ```
 
+위 스크립트에서 보다시피 외부에서 접속하고자 30077, 30078을 nodeport로 설정하였기 때문에 GCP 방화벽에 추가해주어야 한다.
+
+Spark 설치 결과는 아래 링크 통해 Web UI로 확인 가능하다.
+  - http://<<k8s-master 외부IP>>:30078/
+
 <br>
 
 # spark를 삭제하거나 재설치하고자 하는 경우
   - 삭제하기
     ```shell
     [root@helm-client ~]# helm uninstall my-first-spark
+    ```
+  - 재설치하기
+    ```shell
+    helm upgrade --install my-first-spark bitnami/spark --version 7.2.2 -n default \
+      --set service.type=NodePort \
+      --set service.nodePorts.cluster=30077 \
+      --set service.nodePorts.http=30078 \
+      --set worker.replicaCount=3
     ```
 
 <br>
