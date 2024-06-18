@@ -3,6 +3,8 @@
 - [k8s 구성을 위한 GCP VM 세팅](#k8s-구성을-위한-gcp-vm-세팅)
 - [k8s 어플리케이션 설치 위한 Helm-client 환경 세팅](#k8s-어플리케이션-설치-위한-Helm-client-환경-세팅)
 - [spark 어플리케이션 개발 위한 Jupyter Notebook 환경 세팅](#spark-어플리케이션-개발-위한-Jupyter-Notebook-환경-세팅)
+- [spark 어플리케이션 개발](#spark-어플리케이션-개발)
+- [spark Web UI 환경 세팅](#spark-Web-UI-환경-세팅)
 
 <br><br><br><br>
 
@@ -21,7 +23,7 @@ k8s 1.27 버전에 spark 3.4.1 버전으로 클러스터링 구성하며 전체�
 
 # k8s 어플리케이션 설치 위한 Helm-client 환경 세팅
 별도 서버에 Helm-client를 설치한다. 로컬에 설치해도 되지만 본 과제에서는 하나의 서버에 Helm과 주피터 노트북을 같이 사용할 수 있는 환경을 구성한다.<br>
-Helm을 이용하여 Spark 클러스터를 설치하는 방법도 아래 링크에서 설명한다.
+Helm을 이용하여 Spark 클러스터를 설치하는 방법도 아래 링크에서 설명한다.<br>
 구축 상세는 아래 링크 참조.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/helm/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/helm/README.md)
 
@@ -30,5 +32,18 @@ Helm을 이용하여 Spark 클러스터를 설치하는 방법도 아래 링크�
 # spark 어플리케이션 개발 위한 Jupyter Notebook 환경 세팅
 Helm-client가 설치된 서버에 주피터 노트북 환경도 같이 설정한다.<br>
 구축 상세는 아래 링크 참조.
+- [https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md)
+
+<br>
+
+# spark 어플리케이션 개발
+[https://github.com/seoddong/k8s-spark-on-prem/tree/main/jupyter/jupyter%20home](https://github.com/seoddong/k8s-spark-on-prem/tree/main/jupyter/jupyter%20home) 폴더의 여러 소스들을 이용해서 spark 프로그램을 테스트해보자.
+
+<br>
+
+# spark Web UI 환경 세팅
+스파크 어플리케이션을 돌리다보면 스파크 웹에서 내용을 확인해 볼 필요가 생긴다.<br>
+스파크 웹 UI는 크게 3가지 메인 화면, executor 화면, Spark Job 화면이 있는데 메인을 제외하고는 링크를 클릭해도 화면을 볼 수 없다.
+이에 대해 아래 링크를 참조하여 각 화면을 볼 수 있다.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md)
 
