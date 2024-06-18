@@ -1,3 +1,37 @@
+## 목차
+
+1. [기본 이미지용 VM 생성](#기본-이미지용-vm-생성)
+   - [VM 생성 정보](#vm-생성-정보)
+   - [SSH 연결 및 root 권한 설정](#ssh-연결-및-root-권한-설정)
+   - [sshd_config 설정 변경](#sshd_config-설정-변경)
+
+2. [VSCode에서 k8s-master 서버 접속](#vscode에서-k8s-master-서버-접속)
+   - [VSCode 설정 파일 수정](#vscode-설정-파일-수정)
+   - [VSCode를 통한 SSH 연결](#vscode를-통한-ssh-연결)
+
+3. [k8s-master 서버 환경 세팅](#k8s-master-서버-환경-세팅)
+   - [gcp_k8s_init.sh 스크립트 실행](#gcp_k8s_initsh-스크립트-실행)
+
+4. [GCP Base Image 생성](#gcp-base-image-생성)
+   - [k8s-master 서버를 기반으로 이미지 생성](#k8s-master-서버를-기반으로-이미지-생성)
+
+5. [k8s-master 서버 세팅 마무리](#k8s-master-서버-세팅-마무리)
+   - [고정 IP 적용](#고정-ip-적용)
+   - [gcp_k8s_master.sh 스크립트 수정 및 실행](#gcp_k8s_mastersh-스크립트-수정-및-실행)
+
+6. [K8S Worker Node 세팅](#k8s-worker-node-세팅)
+   - [Worker Node VM 생성](#worker-node-vm-생성)
+   - [VSCode를 통한 SSH 연결](#vscode를-통한-ssh-연결)
+   - [Worker Node와 k8s-master 클러스터링](#worker-node와-k8s-master-클러스터링)
+
+7. [GCP 방화벽 설정](#gcp-방화벽-설정)
+   - [방화벽 규칙 추가](#방화벽-규칙-추가)
+
+8. [K8S 대시보드 확인](#k8s-대시보드-확인)
+   - [K8S 대시보드 접속 및 설정](#k8s-대시보드-접속-및-설정)
+
+<br><br><br><br>
+
 # k8s 구성을 위한 GCP K8S-master VM 세팅
 본 과제는 TCP 무료 계정(3개월/40만원 혜택)을 사용하여 진행함.
 1. 기본 이미지용 VM 생성
