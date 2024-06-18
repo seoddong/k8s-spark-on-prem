@@ -75,7 +75,7 @@
   
 6. k8s-master 서버 세팅 마무리
    - GCP VM은 서버 재시작 시 외부 IP가 변경될 수 있으므로 이런 경우 상당히 귀찮아진다. 그래서 고정IP를 받아 세팅한다.<br>
-     고정IP 적용(수정 > 네트워크 인터페이스 > 외부IPv4 주소 > 고정 외부IP 주소 예약: k8s-master-ip)
+     고정IP 적용: (GCP Web에서 k8s-master 클릭 > 수정 > 네트워크 인터페이스 > 외부IPv4 주소 > 고정 외부IP 주소 예약: k8s-master-ip)
    - [gcp_k8s_master.sh](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/gcp_k8s_master.sh) 파일을 열고 안의 스크립트를 모두 복사한다.
    - VSCode에서 파일 > 새 텍스트 파일 메뉴 클릭해서 새 창을 열고 스크립트를 붙여넣는다.
      ### <span style="color: orange;">!!!중요!!!</sapn> 스크립트에서 <span style="color: orange;">GCP내부망주소</sapn>와 <span style="color: orange;">GCP외부망주소</sapn> 부분을 자신의 서버 정보에 맞게 수정한다.
