@@ -1,11 +1,7 @@
 # 목차
-- [기본 이미지용 VM 생성](#기본-이미지용-vm-생성)
-- [VSCode에서 k8s-master 서버 접속](#vscode에서-k8s-master-서버-접속)
-- [k8s-master 서버 환경 세팅](#k8s-master-서버-환경-세팅)
-- [GCP Base Image 생성](#gcp-base-image-생성)
-- [k8s-master 서버 세팅 마무리](#k8s-master-서버-세팅-마무리)
+- [k8s 구성을 위한 GCP K8S-master VM 세팅](#k8s-구성을-위한-GCP-K8S-master-VM-세팅)
 - [K8S Worker Node 세팅](#k8s-worker-node-세팅)
-- [GCP 방화벽 설정](#gcp-방화벽-설정)
+- [외부에서 k8s에 접근하기 위한 GCP 방화벽 설정](#외부에서-k8s에-접근하기-위한-GCP-방화벽-설정)
 - [K8S 대시보드 확인](#k8s-대시보드-확인)
 
 
