@@ -141,6 +141,7 @@
      - 30077 spark간 통신용 nodeport
      - 30078 spark Web UI 접속용 nodeport
      - 30079-30081 spark executor WEb UI 접속용 nodeport
+     - 30705 Longhorn
 
 # k8s 대시보드 확인
    1) https://<<k8s-master 외부IP>>:30000
