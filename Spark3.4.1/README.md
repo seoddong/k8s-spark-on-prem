@@ -33,6 +33,7 @@ Spark Application을 만들어 실행시키고 running 중인 application에 들
 
 그러나 위와 같이 링크가 spark driver 위치의 호스트 주소 형태로 반환되는데 외부망에서 접속이 안 된다.<br>
 이는 GCP에서 방화벽 4041포트를 열고 외부 IP를 이용하여 접속하면 정상적으로 열리는 것을 확인할 수 있다. <br>
+여기서는 <<spark-driver 외부 IP>>는 jupyter notebook이 실행되는 서버의 외부IP이다.
 - http://<<spark-driver 외부 IP>>:4041/
 
 그래서 k8s VM 구축 시 방화벽 설정할 때 4040, 4041을 오픈한 것이다.
