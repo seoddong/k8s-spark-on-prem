@@ -6,22 +6,10 @@
 서버에 접속 후 [install.sh](https://github.com/seoddong/k8s-spark-on-prem/blob/main/helm/install.sh) 스크립트 실행 (VSCode로 새 파일 만들고 스크립트 복사해서 넣고 저장하고 권한 주고.. 이런 작업은 앞서 했으니 자세한 설명은 생략)
 
 # kubectl 설치
-한 줄 씩 실행
+Helm이 k8s와 통신하기 위해 kubectl을 설치해야 한다. 아래 코드를 한 줄 씩 실행한다.
 ```shell
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod 700 ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl version --client
-```
-
-# Bitnami/spark 설치
-Spark 3.4.1로 설치하려면 7.2.2로, spark 3.5로 설치하려면 9.0.0 입력<br>
-replicaCount는 kube worker node 숫자 이하로 세팅
-
-```shell
-helm install my-first-spark bitnami/spark --version 7.2.2 -n default \
-  --set service.type=NodePort \
-  --set service.nodePorts.cluster=30077 \
-  --set service.nodePorts.http=30078 \
-  --set worker.replicaCount=2
 ```
