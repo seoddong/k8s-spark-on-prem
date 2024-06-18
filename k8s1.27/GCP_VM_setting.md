@@ -134,7 +134,7 @@
      - 5001-5003 왜 열었는지 생각 안 남
      - 6443 k8s 통신
      - 8080 python tailon 서비스(서버 로그 파일의 tail 결과를 실시간 웹으로 서비스)
-     - 8888 spark때문에 열었던거 까지는 기억 남
+     - 8888 jupyter notebook web
      - 30000 k8s 대시보드
      - 30007 mariaDB의 nodeport (외부에서 접속할 때 사용)
      - 30077 spark간 통신용 nodeport
