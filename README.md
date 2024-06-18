@@ -45,5 +45,5 @@ Helm-client가 설치된 서버에 주피터 노트북 환경도 같이 설정�
 스파크 어플리케이션을 돌리다보면 스파크 웹에서 내용을 확인해 볼 필요가 생긴다.<br>
 스파크 웹 UI는 크게 3가지 메인 화면, executor 화면, Spark Job 화면이 있는데 메인을 제외하고는 링크를 클릭해도 화면을 볼 수 없다.
 이에 대해 아래 링크를 참조하여 각 화면을 볼 수 있다.
-- [https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/jupyter/README.md)
+- [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md)
 
