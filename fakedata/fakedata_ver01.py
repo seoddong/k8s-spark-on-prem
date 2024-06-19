@@ -78,10 +78,6 @@ start_date = datetime.strptime("2024-06-01", '%Y-%m-%d')  # 시작 날짜 설정
 end_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 종료 날짜 설정
 delta_days = (end_date - start_date).days
 unique_dates = [start_date + timedelta(days=x) for x in range(delta_days + 1)]
-# 오늘 날짜의 데이터만 생성하려면 아래와 같이 설정
-# start_date = datetime.today()
-# delta_days = 0
-# unique_dates = [start_date]
 
 channel_cd_options = ['F01', 'F02', 'F03']
 
