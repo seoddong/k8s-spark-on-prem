@@ -51,7 +51,12 @@ Helm-client가 설치된 서버에 주피터 노트북 환경도 같이 설정�
 
 # spark 미니 프로젝트
 AWS S3에서 spark stream을 이용하여 파일을 읽고 MariaDB에 저장하는 미니 프로젝트를 진행해본다.<br>
+![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/5d296e42-a9c6-4ec8-a4ca-8484a5faa780)
+
+spark client mode로 개발을 진행하게 되며 client mode의 구조는 아래와 같다.<br>
+![image](https://github.com/seoddong/k8s-spark-on-prem/assets/15936649/4edc76f2-19de-4df0-a78b-4254fc62ebd1)
+
 미니 프로젝트를 위해 k8s에 MariaDB를 추가해야 하고 MariaDB가 사용할 스토리지로 Longhorn을 미리 설치해야 한다.
-MariaDB와 Longhorn의 설치는 아래 링크를 확인하.
+MariaDB와 Longhorn의 설치는 아래 링크를 확인하자.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md)
 
