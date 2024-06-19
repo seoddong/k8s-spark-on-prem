@@ -5,6 +5,7 @@
 - [spark 어플리케이션 개발 위한 Jupyter Notebook 환경 세팅](#spark-어플리케이션-개발-위한-Jupyter-Notebook-환경-세팅)
 - [spark 어플리케이션 개발](#spark-어플리케이션-개발)
 - [spark Web UI 환경 세팅](#spark-Web-UI-환경-세팅)
+- [spark 미니 프로젝트](#spark-미니-프로젝트)
 
 <br><br><br><br>
 
@@ -60,3 +61,4 @@ spark client mode로 개발을 진행하게 되며 client mode의 구조는 아�
 MariaDB와 Longhorn의 설치는 아래 링크를 확인하자.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md)
 
+미니 프로젝트의 데이터 준비, 스파크 소스 등 자세한 설명은 아래 링크를 확인한다.
