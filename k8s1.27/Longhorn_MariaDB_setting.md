@@ -1,5 +1,5 @@
 # Longhorn 설치
-Longhorn 설치 위한 전제조건으로 open iscsi 설치해야 하는데 이미 베이스이미지 만들 때 설치해놓았다.<br>
+Longhorn 설치 위한 전제조건으로 k8s가 구동되는 VM에 open iscsi를 설치해야 하는데 이미 베이스이미지 만들 때 설치해놓았다.<br>
 Longhorn에 대해 자세히 알고 싶으면 ChatGPT에게 물어보자.
 
 kube기반이므로 역시 helm을 이용하여 쉽게 설치할 수 있다.
@@ -40,4 +40,37 @@ kube기반이므로 역시 helm을 이용하여 쉽게 설치할 수 있다.
 <br>
 
 # MariaDB 설치
+MariaDB 역시 Helm으로 간단하게 설치할 수 있다. <br>
+일반적으로 MariaDB는 3306포트를 사용하지만 여기서는 k8s에서 구동되므로 외부 접속을 위해 30007로 nodeport 설정하여 외부 접속하도록 하였다.<br>
+
+```shell
+DB암호설정 문구를 자기가 사용하고자 하는 암호로 바꾸고 실행시킨다.
+helm install my-first-mariadb bitnami/mariadb \
+    --namespace default \
+    --set primary.service.type=NodePort \
+    --set primary.service.nodePort=30007 \
+    --set auth.rootPassword=DB암호설정 \
+    --set auth.database=sparkdb
+```
+- 방화벽 해제: 설치 후 접속 위해서 GCP 방화벽 해제 작업해야 하는데 여기서는 k8s 구축할 때 미리 다 해 놓았다.
+
+<br>
+
+# MariaDB 접속 테스트
+  - Windows: 그냥 DBWeaver 설치해서 접속하면 끝
+  - Linux: Helm-client서버 등 k8s 외부 서버에서 아래 스크립트 이용해서 mysql client 설치한 후 접속 테스트
+    ```shell
+    dnf install mysql –y로 mysql 설치하고 접속 테스트 (패스워드 물어봄)
+    mysql -h <<k8s-master외부IP>> -P 30007 -u root -p
+    
+    mysql 프롬프트 나오면,
+    SHOW DATABASES;
+    
+    USE sparkdb;
+    CREATE TABLE test (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));
+    INSERT INTO test (name) VALUES ('example');
+    
+    SELECT * FROM test;
+    exit;
+    ```
 
