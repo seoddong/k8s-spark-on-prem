@@ -76,7 +76,7 @@ save_to_file = True  # 파일로 저장할지 여부 (True: 파일, False: DB)
 # 작업 날짜 범위 설정 (start_date부터 n일 순차적으로)
 start_date = datetime.strptime("2024-06-01", '%Y-%m-%d')  # 시작 날짜 설정
 end_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 종료 날짜 설정
-delta_days = (end_date - start_date).days  # 10일치 생성하려면 9로 입력
+delta_days = (end_date - start_date).days
 unique_dates = [start_date + timedelta(days=x) for x in range(delta_days + 1)]
 # 오늘 날짜의 데이터만 생성하려면 아래와 같이 설정
 # start_date = datetime.today()
