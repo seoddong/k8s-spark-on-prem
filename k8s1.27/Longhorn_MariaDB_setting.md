@@ -1,7 +1,7 @@
 # 목차
 - [Longhorn 설치](#Longhorn-설치)
 - [MariaDB 설치](#MariaDB-설치)
-- [# MariaDB 접속 테스트](#MariaDB-접속-테스트)
+- [MariaDB 접속 테스트](#MariaDB-접속-테스트)
 
 <br><br><br><br>
 
