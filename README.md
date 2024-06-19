@@ -61,6 +61,7 @@ spark client mode로 개발을 진행하게 되며 client mode의 구조는 아�
 MariaDB와 Longhorn의 설치는 아래 링크를 확인하자.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/Longhorn_MariaDB_setting.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/Longhorn_MariaDB_setting.md)
 
+
 미니 프로젝트의 데이터 준비, 스파크 소스 등 자세한 설명은 아래 링크를 확인한다.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/spark_miniproj.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/spark_miniproj.md)
 
