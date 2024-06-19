@@ -1,3 +1,19 @@
+# fakedata에 대하여
+- spark 미니 프로젝트에 사용할 원본 데이터가 6만여건으로 데이터 수가 너무 적음
+- 합성 데이터를 만들되 원본 데이터의 제품, 직원, 판매 실적 등의 비율이 비슷하게 유지되도록 만들어야 함
+
+<br>
+
+# 실행 전 준비 사항
+- MariaDB가 설치 되어 있어야 함
+- MariaDB에 아래 테이블들이 만들어져있고 데이터가 들어있어야 함
+   - TB_EMPLOYEES, TB_PRODUCT - [MariaDB 덤프 파일](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/data/dump-sparkdb-202406191320.sql) 이용하여 생성
+   - TB_SALES
+      1) [DDL문](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/data/DDL_TB_SALES.sql) 이용하여 테이블 생성
+      2) DBWeaver로 [원본 샘플 데이터](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/data/TB_SALES.csv)를 TB_SALES에 import
+
+<br>
+
 # fakedata_ver01.py 사용법
 - fakedata_ver01.py와 requirements.txt 파일 다운로드
 - pip install -r requirements.txt 명령으로 필요한 라이브러리 설치
