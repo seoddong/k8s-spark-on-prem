@@ -1,3 +1,10 @@
+# 목차
+- [Longhorn 설치](#Longhorn-설치)
+- [MariaDB 설치](#MariaDB-설치)
+- [# MariaDB 접속 테스트](## MariaDB-접속-테스트)
+
+<br><br><br><br>
+
 # Longhorn 설치
 Longhorn 설치 위한 전제조건으로 k8s가 구동되는 VM에 open iscsi를 설치해야 하는데 이미 베이스이미지 만들 때 설치해놓았다.<br>
 Longhorn에 대해 자세히 알고 싶으면 ChatGPT에게 물어보자.
