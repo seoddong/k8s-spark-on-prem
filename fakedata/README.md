@@ -28,14 +28,14 @@
       ```
 - 합성데이터 생성 날짜 설정하기
    - 범위로 설정할 때: 시작일과 종료일 입력
-         ```python
-         # 작업 날짜 범위 설정
-         start_date = datetime.strptime("2024-06-01", '%Y-%m-%d')  # 시작 날짜 설정
-         end_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 종료 날짜 설정
-         ```
+      ```python
+      # 작업 날짜 범위 설정
+      start_date = datetime.strptime("2024-06-01", '%Y-%m-%d')  # 시작 날짜 설정
+      end_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 종료 날짜 설정
+      ```
    - 하루로 설정할 때: 시작일과 종료일을 같게 입력
-         ```python
-         # 작업 날짜 범위 설정
-         start_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 시작 날짜 설정
-         end_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 종료 날짜 설정
-         ```
+      ```python
+      # 작업 날짜 범위 설정
+      start_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 시작 날짜 설정
+      end_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 종료 날짜 설정
+      ```
