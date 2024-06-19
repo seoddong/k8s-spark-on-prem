@@ -6,6 +6,7 @@
 - [spark 어플리케이션 개발](#spark-어플리케이션-개발)
 - [spark Web UI 환경 세팅](#spark-Web-UI-환경-세팅)
 - [spark 미니 프로젝트](#spark-미니-프로젝트)
+- [별첨: fakedata 만들기](#별첨:-fakedata-만들기)
 
 <br><br><br><br>
 
@@ -65,3 +66,9 @@ MariaDB와 Longhorn의 설치는 아래 링크를 확인하자.
 미니 프로젝트의 데이터 준비, 스파크 소스 등 자세한 설명은 아래 링크를 확인한다.
 - [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/spark_miniproj.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/spark_miniproj.md)
 
+
+<br>
+
+# 별첨: fakedata 만들기
+Spark 미니 프로젝트 만들기를 하나하나 따라가다 보면 fakedata 만들기도 나오지만 별첨으로 여기서 언급함
+- [fakedata 만들기](https://github.com/seoddong/k8s-spark-on-prem/blob/main/fakedata/README.md)
