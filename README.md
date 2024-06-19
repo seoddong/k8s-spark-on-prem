@@ -59,6 +59,6 @@ spark client mode로 개발을 진행하게 되며 client mode의 구조는 아�
 
 미니 프로젝트를 위해 k8s에 MariaDB를 추가해야 하고 MariaDB가 사용할 스토리지로 Longhorn을 미리 설치해야 한다.
 MariaDB와 Longhorn의 설치는 아래 링크를 확인하자.
-- [https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/README.md)
+- [https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/Longhorn_MariaDB_setting.md](https://github.com/seoddong/k8s-spark-on-prem/blob/main/k8s1.27/Longhorn_MariaDB_setting.md)
 
 미니 프로젝트의 데이터 준비, 스파크 소스 등 자세한 설명은 아래 링크를 확인한다.
