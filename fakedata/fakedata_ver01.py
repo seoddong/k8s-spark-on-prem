@@ -9,10 +9,10 @@ import time
 
 # DB 접속 정보
 db_info = {
-    'host': '34.68.13.64',
+    'host': '<<k8s-master외부IP>>',
     'port': 30007,
     'user': 'root',
-    'password': 'tjehdgml',
+    'password': '자신의 암호 사용하셈셈',
     'database': 'sparkdb'
 }
 
