@@ -14,7 +14,7 @@
 
 2) 사용할 데이터 파일 (모두 data 폴더에 있음)
    - 샘플 데이터 원본 : [TB_SALES.csv](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/data/TB_SALES.csv)
-      - 이 파일 이용하여 fakedata 생성 로직으로 아래 데이터 생성하였음
+      - 이 파일 이용하여 fakedata 생성 로직으로 미니프로젝트용 데이터 생성하였음
       - [fakedata 생성 방법](https://github.com/seoddong/k8s-spark-on-prem/blob/main/fakedata/README.md)
    - S3용 데이터 - [sales_data_202405까지.zip](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/data/sales_data_202405%EA%B9%8C%EC%A7%80.zip) : 2024.01 ~ 05월 판매 실적 데이터
    - S3용 데이터 - [sales_data_2024-06.zip](https://github.com/seoddong/k8s-spark-on-prem/blob/main/Spark3.4.1/data/sales_data_2024-06.zip) : 2024.06월 판매실적 데이터
