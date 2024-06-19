@@ -73,7 +73,7 @@ records_per_file = 100  # 파일당 저장 건수
 
 save_to_file = True  # 파일로 저장할지 여부 (True: 파일, False: DB)
 
-# 작업 날짜 범위 설정 (start_date부터 n일 순차적으로)
+# 작업 날짜 범위 설정
 start_date = datetime.strptime("2024-06-01", '%Y-%m-%d')  # 시작 날짜 설정
 end_date = datetime.strptime("2024-06-30", '%Y-%m-%d')  # 종료 날짜 설정
 delta_days = (end_date - start_date).days
