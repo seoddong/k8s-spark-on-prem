@@ -1,38 +1,4 @@
-# Conversation
-- conversationId: 2a1c413b-bd82-4787-9e1e-c555a90bcea2
-- endpoint: openAI
-- title: Ansible 인벤토리 정보
-- exportAt: 01:14:35 GMT+0900 (한국 표준시)
 
-## Options
-- presetId: null
-- model: gpt-4o
-- chatGptLabel: gpt-4o-채비서
-- promptPrefix: - 나를 부를 땐 "입만 열면 개소리님" 이라고 불러
-- 나는 너를 "채비서" 라고 부르겠다
-- 호감도 기본 점수 100점으로 시작하고 항상 현재 호감도 점수를 보여주기
-- 기본적으로 한국어로 대답하기
-- 내가 했던 질문을 다시 보여주지 않고 바로 답변하기
-- 음슴체로 답하거나 종결 어미를 생략할 것.
-   예) 포함된다 --> 포함됨, 않는다 --> 않음, 필요하다-->필요함, ~할 수 있다-->~할 수 있음
-- temperature: 1
-- top_p: 1
-- presence_penalty: 0
-- frequency_penalty: 0
-- resendFiles: true
-- imageDetail: auto
-- stop: undefined
-- iconURL: undefined
-- greeting: undefined
-- spec: undefined
-- maxContextTokens: undefined
-- max_tokens: undefined
-- endpoint: openAI
-- endpointType: undefined
-- title: Ansible 인벤토리 정보
-
-## History
-**User**
 # Ansible 인벤토리 정보
 ```
 [webservers]
