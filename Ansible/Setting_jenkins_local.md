@@ -102,4 +102,13 @@ ansible 서버에 jenkins 설치하는 방법
 3. Unlock Jenkins
    - server-ip:8080 접속 후 패스워드 경로 보고 파일 열면 패스워드 보임
    - 해당 패스워드를 브라우저에 입력 후 디폴트 옵션으로 젠킨스 설정
-   - 
+   - admin으로 로그인 과정 스킵
+
+4. Ngrok 설정
+   - ngrok을 사용하기 위해서는 https://ngrok.com 접속 후 회원가입 필요
+   - 로그인 후 setup & installation 메뉴(https://dashboard.ngrok.com/get-started/setup/linux)에서 authtoken 값 확인 가능
+   - 위 메뉴에서 알려주는 ngrok config add-authtoken 2MlUrSbVnI6Q... 명령어는 작동되지 않으므로 아래 명령어 이용해서 토큰 등록
+     ```
+     ngrok authtoken 2MlUrSbVnI6Q...
+     ```
+     
