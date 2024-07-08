@@ -101,3 +101,8 @@ ansible 서버에 도커를 설치하고 jenkins와 ngrok을 모두 도커 컨�
       ```shell
       docker run --net=host -it -e NGROK_AUTHTOKEN=MlUrSbVnI6...(authtoken값 입력) ngrok/ngrok:latest http 8080
       ```
+
+5. Jenkins - github 연동 설정
+    - https://www.youtube.com/watch?v=GE-jl7Cwiuk
+    - jenkins git credential 생성: https://medium.com/@sneakstarberry/jenkins-git-credential-%EB%93%B1%EB%A1%9D-aff572de329e
+    - 
