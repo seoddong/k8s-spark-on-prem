@@ -1,5 +1,5 @@
-# ansible local에 jenkins 설치하기
-ansible 서버에 jenkins 설치하는 방법
+# ansible local에 jenkins & ngrok 설치하기
+ansible 서버에 도커를 설치하고 jenkins와 ngrok을 모두 도커 컨테이너를 땡겨와서 설치하는 방법
 
 1. ansible hosts에 자기 자신 등록
    
@@ -16,7 +16,7 @@ ansible 서버에 jenkins 설치하는 방법
   
       ```yaml
       ---
-      - name: Install Jenkins and ngrok
+      - name: Install Jenkins and ngrok with Docker
         hosts: ansible-master
         become: yes
         tasks:
@@ -24,91 +24,80 @@ ansible 서버에 jenkins 설치하는 방법
           - name: Install required dependencies
             yum:
               name: 
-                - java-11-openjdk
-                - wget
-                - unzip  # 여기에 unzip 추가
+                - python3-pip
+                - yum-utils
+                - device-mapper-persistent-data
+                - lvm2
+              state: present
+          
+          - name: Install requests library
+            pip:
+              name: requests
               state: present
       
-          - name: Add Jenkins repository
-            command: >
-              wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-            args:
-              creates: /etc/yum.repos.d/jenkins.repo
+          - name: Install and update Docker repository
+            shell: |
+              yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+              yum makecache
       
-          - name: Import Jenkins repository key
-            rpm_key:
-              key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-      
-          - name: Install Jenkins
+          - name: Install Docker
             yum:
-              name: jenkins
+              name:
+                - docker-ce
+                - docker-ce-cli
+                - containerd.io
               state: present
       
-          - name: Ensure Jenkins is running
+          - name: Start and enable Docker
             service:
+              name: docker
+              state: started
+              enabled: yes
+      
+          - name: Add user to docker group
+            user:
+              name: "root"
+              groups: docker
+              append: yes
+      
+          - name: Pull Jenkins Docker image
+            docker_image:
+              name: jenkins/jenkins
+              tag: lts
+              source: pull
+      
+          - name: Run Jenkins Docker container
+            docker_container:
               name: jenkins
+              image: jenkins/jenkins:lts
+              ports:
+                - "8080:8080"
+                - "50000:50000"
+              restart_policy: always
               state: started
-              enabled: yes
       
-          - name: Install EPEL repository for ngrok dependency
-            yum:
-              name: epel-release
-              state: present
-      
-          - name: Install ngrok
-            get_url:
-              url: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-              dest: /tmp/ngrok.zip
-      
-          - name: Unzip ngrok
-            unarchive:
-              src: /tmp/ngrok.zip
-              dest: /usr/local/bin/
-              remote_src: yes
-      
-          - name: Make ngrok executable
-            file:
-              path: /usr/local/bin/ngrok
-              mode: '0755'
-      
-          - name: Start ngrok on boot
-            copy:
-              content: |
-                [Unit]
-                Description=Ngrok
-                After=network.target
-      
-                [Service]
-                ExecStart=/usr/local/bin/ngrok http 8080
-                Restart=on-failure
-                User=root
-      
-                [Install]
-                WantedBy=multi-user.target
-              dest: /etc/systemd/system/ngrok.service
-      
-          - name: Reload systemd configuration
-            systemd:
-              daemon_reload: yes
-      
-          - name: Enable and start ngrok
-            systemd:
-              name: ngrok
-              enabled: yes
-              state: started
+          - name: Pull ngrok Docker image
+            docker_image:
+              name: ngrok/ngrok
+              tag: latest
+              source: pull
       
       ```
 
 3. Unlock Jenkins
-   - server-ip:8080 접속 후 패스워드 경로 보고 파일 열면 패스워드 보임
+   - server-ip:8080 접속 후 패스워드 경로 보고 파일 열면 패스워드 보임<br>경로를 열기 위해 도커 컨테이너로 들어가야 함
+     ```shell
+     docker ps
+     docker exec -it [컨테이너 이름 또는 ID] /bin/bash
+     cat /var/jenkins_home/secrets/initialAdminPassword
+     ```
    - 해당 패스워드를 브라우저에 입력 후 디폴트 옵션으로 젠킨스 설정
    - admin으로 로그인 과정 스킵
 
 4. Ngrok 설정
    - ngrok을 사용하기 위해서는 https://ngrok.com 접속 후 회원가입 필요
    - 로그인 후 setup & installation 메뉴(https://dashboard.ngrok.com/get-started/setup/linux)에서 authtoken 값 확인 가능
-   - 위 메뉴에서 알려주는 ngrok config add-authtoken 2MlUrSbVnI6Q... 명령어는 작동되지 않으므로 아래 명령어 이용해서 토큰 등록
-     ```
-     ngrok authtoken 2MlUrSbVnI6Q...
-     ```
-   - 
+   - 도커 실행 명령어
+      ```shell
+      docker run --net=host -it -e NGROK_AUTHTOKEN=MlUrSbVnI6...(authtoken값 입력) ngrok/ngrok:latest http 8080
+      ```
