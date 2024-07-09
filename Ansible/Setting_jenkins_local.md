@@ -13,8 +13,10 @@ ansible 서버에 도커를 설치하고 jenkins와 ngrok을 모두 도커 컨�
     jenkins-playbook.yaml <br>
     - 참고로 아래 과정 중 Install Jenkins 과정이 매우 오래 걸리니 (10분?) 끈기있게 기다릴 것
     - github 등 외부에서 jenkins 접근이 용이하도록 ngrok도 같이 설치
+    - *YOUR_AUTHTOKEN_HERE* 부분에 ngrok authtoken 기입
   
       ```yaml
+      
       ---
       - name: Install Jenkins and ngrok with Docker
         hosts: ansible-master
@@ -82,6 +84,20 @@ ansible 서버에 도커를 설치하고 jenkins와 ngrok을 모두 도커 컨�
               tag: latest
               source: pull
       
+          - name: Create ngrok configuration directory
+            file:
+              path: "/root/.config/ngrok"
+              state: directory
+              mode: '0755'
+      
+          - name: Create ngrok.yml configuration file
+            copy:
+              dest: /root/.config/ngrok/ngrok.yml
+              content: |
+                authtoken: YOUR_AUTHTOKEN_HERE
+      
+
+
       ```
 
 3. Unlock Jenkins
