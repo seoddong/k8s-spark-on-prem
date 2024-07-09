@@ -84,19 +84,16 @@ ansible 서버에 도커를 설치하고 jenkins와 ngrok을 모두 도커 컨�
               tag: latest
               source: pull
       
-          - name: Create ngrok configuration directory
-            file:
-              path: "/root/.config/ngrok"
-              state: directory
-              mode: '0755'
-      
-          - name: Create ngrok.yml configuration file
-            copy:
-              dest: /root/.config/ngrok/ngrok.yml
-              content: |
-                authtoken: YOUR_AUTHTOKEN_HERE
-      
-
+          - name: Run ngrok Docker container
+            docker_container:
+              name: ngrok
+              image: ngrok/ngrok:latest
+              env:
+                NGROK_AUTHTOKEN: *YOUR_AUTHTOKEN_HERE*
+              network_mode: host
+              command: http 8080
+              tty: yes
+              interactive: yes
 
       ```
 
@@ -113,7 +110,7 @@ ansible 서버에 도커를 설치하고 jenkins와 ngrok을 모두 도커 컨�
 4. Ngrok 설정
    - ngrok을 사용하기 위해서는 https://ngrok.com 접속 후 회원가입 필요
    - 로그인 후 setup & installation 메뉴(https://dashboard.ngrok.com/get-started/setup/linux)에서 authtoken 값 확인 가능
-   - 도커 실행 명령어
+   - 도커 실행 명령어 (자동으로 실행되지 않았을 경우 아래 명령으로 실행)
       ```shell
       docker run --net=host -it -e NGROK_AUTHTOKEN=MlUrSbVnI6...(authtoken값 입력) ngrok/ngrok:latest http 8080
       ```
